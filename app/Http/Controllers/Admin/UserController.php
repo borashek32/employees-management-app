@@ -71,12 +71,12 @@ class UserController extends Controller
     {
         if (auth()->user()->id == $user->id) {
             return redirect()
-                ->route('admin.users.index')
+                ->route('users.index')
                 ->with('message', 'You are deleting yourself.');
         }
         $user->delete();
         return redirect()
-            ->route('admin.users.index')
+            ->route('users.index')
             ->with('message', 'User Deleted Succesfully');
     }
 }
