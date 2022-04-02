@@ -10,7 +10,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="{{ route('admin.home') }}">
             <span>Dashboard</span></a>
     </li>
 
@@ -46,7 +46,7 @@
         </a>
         <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="{{ route('users.index') }}">Users List</a>
+                <a class="collapse-item" href="{{ route('admin.users.index') }}">Users List</a>
                 <a class="collapse-item" href="cards.html">Role</a>
                 <a class="collapse-item" href="cards.html">Permissions</a>
             </div>
@@ -63,7 +63,7 @@
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
             data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="utilities-color.html">Country</a>
+                <a class="collapse-item" href="{{ route('admin.countries.index') }}">Country</a>
                 <a class="collapse-item" href="utilities-border.html">State</a>
                 <a class="collapse-item" href="utilities-animation.html">Department</a>
                 <a class="collapse-item" href="utilities-other.html">City</a>
