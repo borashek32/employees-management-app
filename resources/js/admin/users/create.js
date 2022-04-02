@@ -59,8 +59,14 @@ $(document).ready(function () {
           });
 
         } else if(response.status == 200) {
+          // var createUserBtn = document.querySelector("#createUserBtn")
+          // console.log(createUserBtn.getAttribute('alt'))
+          // createUserBtn.setAttribute('data-dismiss', 'modal')
+          // console.log(createUserBtn.getAttribute('data-dismiss'))
+          $("#createUserModal").addClass("d-none")
+          $(".modal-backdrop").fadeOut()
+          // $("#createUserModal").html("")
           $("#createUserModal").find('input').val("")
-          $("#createUserModal").modal("hide")
           $("span").html("")
           $(".message_success").html("")
           $(".message_success").append(response.message)

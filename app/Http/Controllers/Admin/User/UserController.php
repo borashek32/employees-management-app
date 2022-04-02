@@ -99,12 +99,12 @@ class UserController extends Controller
                 'email'                 => 'required|string|email|max:255|unique:users'
             ]);
 
-            if($vakidator->fails()) {
-
+            if($validator->fails()) {
                 return response()->json([
                     'status'   => 400,
                     'messages' => $validator->messages()
                 ]);
+
             } else {
                 $user->update([
                     'username'   => $request->username,
@@ -125,7 +125,6 @@ class UserController extends Controller
                 'message'   => "User Not Found"
             ]);
         }
-        
     }
 
     public function destroy(User $user)
