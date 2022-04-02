@@ -1,4 +1,27 @@
 $(document).ready(function () {
+  fetchUsers();
+
+  function fetchUsers() {
+    $.ajax({
+      type: "GET",
+      url: "/admin/users-fetch",
+      dataType: "json",
+      success: function success(response) {
+        $("tbody").html("");
+
+        if (response.status == 200) {
+          $.each(response.users, function (key, item) {
+            $("tbody").append("<tr>                        <td>" + item.id + "</td>                        <td>" + item.username + "</td>                        <td>" + item.email + "</td>                        <td><button type=\"button\" id=\"" + item.id + "\" class=\"btn btn-info btn-sm user-show-btn\">Show</button>                        <button type=\"button\" id=\"" + item.id + "\" class=\"btn btn-primary btn-sm\">Edit</button>                        <button type=\"button\" id=\"" + item.id + "\" class=\"btn btn-danger btn-sm\">Delete</button></td>                    </tr>");
+          });
+        } else {
+          $('.message_error').html("");
+          $('.message_error').append(response.message);
+        }
+      }
+    });
+  }
+});
+$(document).ready(function () {
   $(document).on("click", ".create-user-btn", function (e) {
     e.preventDefault();
     var data = {
@@ -73,25 +96,28 @@ $(document).ready(function () {
   });
 });
 $(document).ready(function () {
-  fetchUsers();
-
-  function fetchUsers() {
+  $(document).on("click", ".user-show-btn", function (e) {
+    e.preventDefault();
+    var id = $(this).attr("id");
+    $("#showUserModal").modal("show");
     $.ajax({
       type: "GET",
-      url: "/admin/users-fetch",
+      url: "/admin/users/" + id,
       dataType: "json",
       success: function success(response) {
-        $("tbody").html("");
-
         if (response.status == 200) {
-          $.each(response.users, function (key, item) {
-            $("tbody").append("<tr>                        <td>" + item.id + "</td>                        <td>" + item.username + "</td>                        <td>" + item.email + "</td>                        <td><button type=\"button\" value=\"" + item.id + "\" class=\"btn btn-info btn-sm\">Show</button>                        <button type=\"button\" value=\"" + item.id + "\" class=\"btn btn-primary btn-sm\">Edit</button>                        <button type=\"button\" value=\"" + item.id + "\" class=\"btn btn-danger btn-sm\">Delete</button></td>                    </tr>");
-          });
+          $(".show-user-username").append(response.user.username);
+          $(".show-user-first_name").append(response.user.first_name);
+          $(".show-user-last_name").append(response.user.last_name);
+          $(".show-user-email").append(response.user.email);
+          $("edit-user-btn").append("<button type=\"button\" id=\"" + response.user.id + "\" class=\"btn btn-primary btn-sm\">Edit</button>");
         } else {
-          $('.message_error').html("");
-          $('.message_error').append(response.message);
+          $(".message_error").append(response.message);
         }
       }
     });
-  }
+  });
+  $(document).on("click", ".close-show-user", function () {
+    $("#showUserModal").modal("hide");
+  });
 });

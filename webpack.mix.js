@@ -14,8 +14,9 @@ const mix = require('laravel-mix');
 mix.js('resources/js/app.js', 'public/js')
 
     .scripts([
+        'resources/js/admin/users/fetch.js',
         'resources/js/admin/users/create.js',
-        'resources/js/admin/users/fetch.js'
+        'resources/js/admin/users/show.js'
     ],'public/js/index.js', 'public/js')
 
     .vue()

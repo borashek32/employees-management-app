@@ -14,9 +14,9 @@ $(document).ready(function () {
                         <td>`+item.id+`</td>\
                         <td>`+item.username+`</td>\
                         <td>`+item.email+`</td>\
-                        <td><button type="button" value="`+item.id+`" class="btn btn-info btn-sm">Show</button>\
-                        <button type="button" value="`+item.id+`" class="btn btn-primary btn-sm">Edit</button>\
-                        <button type="button" value="`+item.id+`" class="btn btn-danger btn-sm">Delete</button></td>\
+                        <td><button type="button" id="`+item.id+`" class="btn btn-info btn-sm user-show-btn">Show</button>\
+                        <button type="button" id="`+item.id+`" class="btn btn-primary btn-sm">Edit</button>\
+                        <button type="button" id="`+item.id+`" class="btn btn-danger btn-sm">Delete</button></td>\
                     </tr>`);
                     });
                 } else {

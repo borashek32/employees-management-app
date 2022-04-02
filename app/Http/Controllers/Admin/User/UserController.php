@@ -127,6 +127,23 @@ class UserController extends Controller
         }
     }
 
+    public function show($id) 
+    {
+        $user = User::where('id', $id)->first();
+
+        if($user) {
+            return response()->json([
+                'status'   => 200,
+                'user'     => $user
+            ]);
+        } else {
+            return response()->json([
+                'status'   => 404,
+                'message'  => 'User not Found'
+            ]);
+        }
+    }
+
     public function destroy(User $user)
     {
         if (auth()->user()->id == $user->id) {

@@ -22,6 +22,7 @@ Route::prefix('admin')->name('admin.')->group(function() {
     Route::get('/users-fetch', [UserController::class, 'fetch']);
     Route::get('/users', [UserController::class, 'index'])
         ->name('users.index');
+    Route::get('/users/{id}', [UserController::class, 'show']);
     // Route::post('/users', [UserChangePasswordController::class, 'changePassword'])
     //     ->name('users.change-password');
 
