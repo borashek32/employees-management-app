@@ -1,83 +1,106 @@
-@extends('layouts.main')
+<!-- Modal -->
+<div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <p class="h5 mb-0 text-gray-800">Edit user</p>
+        <button type="button" class="close close-edit-user-form" data-dismiss="modal"
+          aria-label="Close">
+          &times;
+        </button>
+      </div>
 
-@section('content')
-<div class="d-sm-flex align-items-left flex-column mb-2 mt-2">
-    <div>
-        <h1 class="h3 mb-0 text-gray-800">Edit user</h1>
-    </div>
-    
-    <div>
-        <a href="{{ route('users.index') }}">Back</a>
-    </div>
-</div>
-    
-    <form action="{{ route('users.update', $user->id) }}" class="mt-4" method="POST">
-        @method('PUT')
-        @csrf
+      <input type="hidden" value="id" id="user_id">
+
+      <div class="modal-body">
         <div class="form-group">
-            <label for="formGroupExampleInput">Username</label>
-            <input type="text" class="form-control" id="username" 
-                placeholder="Enter a username" name="username" value="{{ old('username', $user->username) }}">
+          <label for="formGroupExampleInput">Username</label>
 
-            @error('username')
-                <span class="text-danger">
-                    <strong>{{ $message }}</strong>
-                </span>
-            @enderror
+          <input type="text" class="form-control username" id="edit_username"
+            placeholder="Enter username">
+
+          <span class="text-danger edit_username">
+            <strong></strong>
+          </span>
         </div>
 
         <div class="form-group">
-            <label for="formGroupExampleInput2">First Name</label>
-            <input type="text" class="form-control" id="first_name" 
-                placeholder="Enter a name" name="first_name" value="{{  old('first_name', $user->first_name) }}">
+          <label for="formGroupExampleInput2">First Name</label>
 
-            @error('first_name')
-                <span class="text-danger">
-                    <strong>{{ $message }}</strong>
-                </span>
-            @enderror
+          <input type="text" class="form-control" id="edit_first_name"
+            placeholder="Enter name">
+
+          <span class="text-danger edit_first_name">
+            <strong></strong>
+          </span>
         </div>
 
         <div class="form-group">
-            <label for="formGroupExampleInput2">Last Name</label>
-            <input type="text" class="form-control" id="last_name" 
-                placeholder="Enter a surname" name="last_name" value="{{  old('last_name', $user->last_name) }}">
+          <label for="formGroupExampleInput2">Last Name</label>
+          <input type="text" class="form-control" id="edit_last_name"
+            placeholder="Enter surname">
 
-            @error('last_name')
-                <span class="text-danger">
-                    <strong>{{ $message }}</strong>
-                </span>
-            @enderror
+          <span class="text-danger edit_last_name">
+            <strong></strong>
+          </span>
         </div>
 
         <div class="form-group">
-            <label for="formGroupExampleInput2">Email Address</label>
-            <input type="text" class="form-control" id="email" 
-                placeholder="Enter email address" name="email" value="{{  old('email', $user->email) }}">
-            
-            @error('email')
-                <span class="text-danger">
-                    <strong>{{ $message }}</strong>
-                </span>
-            @enderror
+          <label for="formGroupExampleInput2">Email Address</label>
+
+          <input type="text" class="form-control" id="edit_email"
+            placeholder="Enter email address">
+
+          <span class="text-danger edit_email">
+            <strong></strong>
+          </span>
         </div>
 
-        <div class="form-group">
-            <label for="formGroupExampleInput2">Password</label>
-            <input type="password" class="form-control" id="password" 
-                placeholder="Enter a password" name="password" value={{ old('password', $user->password) }}>
-        </div>
-
-        @error('password')
-            <span class="text-danger">
-                <strong>{{ $message }}</strong>
-            </span>
-        @enderror
-    
         <div class="modal-footer">
-            <a href="{{ route('users.index') }}">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button></a>
-            <input type="submit" class="btn btn-primary" value="Save">
+            <button type="button" class="btn btn-secondary close-edit-user-form"
+              data-dismiss="modal" aria-label="Close">
+              Close
+            </button>
+
+            <div class="btn btn-primary update-user-btn" >
+              Save
+            </div>
+          </div>
+
+        <div class="form-group">
+          <label for="formGroupExampleInput2">Password</label>
+
+          <input type="password" class="form-control" id="edit_password"
+            placeholder="Enter new password">
+
+          <span class="text-danger edit_password">
+            <strong></strong>
+          </span>
         </div>
-    </form>   
-@endsection
+
+        <div class="form-group">
+          <label for="formGroupExampleInput2">Confirm password</label>
+
+          <input type="password" class="form-control" id="edit_password_confirmation"
+            placeholder="Enter new password one more time">
+
+          <span class="text-danger edit_password_confirmation">
+            <strong></strong>
+          </span>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary close-edit-user-form"
+            data-dismiss="modal" aria-label="Close">
+            Close
+          </button>
+
+          <div class="btn btn-primary update-password-user-btn" >
+            Save
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

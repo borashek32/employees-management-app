@@ -89,14 +89,15 @@ class UserController extends Controller
         }
     }
 
-    public function update(ValidateUserUpdateForm $request, User $user)
+    public function update(Request $request, $id)
     {
+        $user = User::find($id);
         if($user) {
             $validator = Validator::make($request->all(), [
-                'username'              => 'required|string|max:255|min:3|unique:users',
+                'username'              => 'required|string|max:255|min:3',
                 'first_name'            => 'required|string|max:255',
                 'last_name'             => 'required|string|max:255',
-                'email'                 => 'required|string|email|max:255|unique:users'
+                'email'                 => 'required|string|email|max:255'
             ]);
 
             if($validator->fails()) {
@@ -106,12 +107,11 @@ class UserController extends Controller
                 ]);
 
             } else {
-                $user->update([
-                    'username'   => $request->username,
-                    'first_name' => $request->first_name,
-                    'last_name'  => $request->last_name,
-                    'email'      => $request->email,
-                ]);
+                $user->username   = $request->username;
+                $user->first_name = $request->first_name;
+                $user->last_name  = $request->last_name;
+                $user->email      = $request->email;
+                $user->update();
 
                 return response()->json([
                     'status'   => 200,
@@ -119,7 +119,6 @@ class UserController extends Controller
                 ]);
             }
         } else {
-
             return response()->json([
                 'status'    => 404,
                 'message'   => "User Not Found"
@@ -127,7 +126,24 @@ class UserController extends Controller
         }
     }
 
-    public function show($id) 
+    public function show($id)
+    {
+        $user = User::where('id', $id)->first();
+
+        if($user) {
+            return response()->json([
+                'status'   => 200,
+                'user'     => $user
+            ]);
+        } else {
+            return response()->json([
+                'status'   => 404,
+                'message'  => 'User not Found'
+            ]);
+        }
+    }
+
+    public function edit($id)
     {
         $user = User::where('id', $id)->first();
 

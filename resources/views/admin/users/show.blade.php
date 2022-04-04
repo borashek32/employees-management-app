@@ -16,9 +16,8 @@
           </div>
         </div>
       </div>
-      <div class="modal-footer">
+      <div class="modal-footer show-modal-footer">
         <button type="button" class="btn btn-secondary close-show-user">Close</button>
-        <button type="button" class="btn btn-primary edit-uesr-btn">Edit</button>
       </div>
     </div>
   </div>
