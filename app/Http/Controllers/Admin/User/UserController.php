@@ -160,16 +160,27 @@ class UserController extends Controller
         }
     }
 
-    public function destroy(User $user)
+    public function destroy($id)
     {
-        if (auth()->user()->id == $user->id) {
-            return redirect()
-                ->route('users.index')
-                ->with('message', 'You are deleting yourself.');
+        $user = User::find($id);
+        if($user) {
+            if (auth()->user()->id == $user->id) {
+                return response()->json([
+                    'status'   => 400,
+                    'message'  => 'You are deleting yourself'
+                ]);
+            } else {
+                $user->delete();
+                return response()->json([
+                    'status'   => 200,
+                    'message'  => 'User Deleted Succesfully'
+                ]);
+            }
+        } else {
+            return response()->json([
+                'status'  => 404,
+                'message' => 'User not found'
+            ]);
         }
-        $user->delete();
-        return redirect()
-            ->route('users.index')
-            ->with('message', 'User Deleted Succesfully');
     }
 }

@@ -34,22 +34,7 @@
           </tr>
         </thead>
         <tbody>
-          {{-- @foreach($users as $user)
-            <tr>
-              <th scope="row">{{ $user->id }}</th>
-              <td>{{ $user->username }}</td>
-              <td>{{ $user->email }}</td>
-              <td>
-                <div class="d-flex flex-row">
-                  <button type="button" class="btn btn-info m-2">Show</button>
 
-                  <button type="button" class="btn btn-secondary m-2">Edit</button>
-
-                  <button type="submit" class="btn btn-danger m-2">Delete</button>
-                </div>
-              </td>
-            </tr>
-          @endforeach --}}
         </tbody>
       </table>
     </div>

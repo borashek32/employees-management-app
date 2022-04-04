@@ -17,28 +17,21 @@ class UserChangePasswordController extends Controller
             'password_confirmation'  =>  'required|min:8|same:password'
         ]);
 
-        if($request->password !== $request->password_confirmation) {
+        if($validator->fails()) {
             return response()->json([
-                'status'    => 400,
-                'messages'  => 'Password confirmation field is not the same as password field'
+                'status'    => 404,
+                'messages'  => $validator->messages()
             ]);
         } else {
-            if($validator->fails()) {
-                return response()->json([
-                    'status'    => 404,
-                    'messages'  => $validator->messages()
-                ]);
-            } else {
-                $user = User::find($id);
-                $user->update([
-                    'password'   => Hash::make($request->password)
-                ]);
+            $user = User::find($id);
+            $user->update([
+                'password'   => Hash::make($request->password)
+            ]);
 
-                return response()->json([
-                    'status'   => 200,
-                    'message'  => 'Password successfully updated'
-                ]);
-            }
+            return response()->json([
+                'status'   => 200,
+                'message'  => 'Password successfully updated'
+            ]);
         }
     }
 }

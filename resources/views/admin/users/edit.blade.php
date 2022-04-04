@@ -65,7 +65,7 @@
             <div class="btn btn-primary update-user-btn" >
               Save
             </div>
-          </div>
+        </div>
 
         <div class="form-group">
           <label for="formGroupExampleInput2">Password</label>

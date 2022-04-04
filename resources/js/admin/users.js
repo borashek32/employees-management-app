@@ -127,7 +127,7 @@ $(document).ready(function () {
             <td>`+item.email+`</td>\
             <td><button type="button" id="`+item.id+`" class="btn btn-info btn-sm user-show-btn">Show</button>\
             <button type="button" id="`+item.id+`" class="btn btn-primary btn-sm user-edit-btn">Edit</button>\
-            <button type="button" id="`+item.id+`" class="btn btn-danger btn-sm">Delete</button></td>\
+            <button type="button" id="`+item.id+`" class="btn btn-danger btn-sm user-delete-btn">Delete</button></td>\
           </tr>`);
           });
         } else {
@@ -298,12 +298,8 @@ $(document).ready(function () {
       data: data,
       dataType: "json",
       success: function (response) {
-        console.log(response.messages)
-        if(response.status == 400) {
-          $('.edit_password_confirmation').html("");
-          $('.edit_password_confirmation').append(response.message);
-
-        } else if(response.status == 404) {
+        console.log(response.status)
+        if(response.status == 404) {
           $.each(response.messages.password, function (key, error_values) {
             $('.edit_password').html("");
             $('.edit_password').append(error_values);
@@ -325,6 +321,7 @@ $(document).ready(function () {
         }
       }
     });
+
     $("#edit_password").focusin(function() {
       $(".edit_password").html("")
     })
@@ -333,6 +330,37 @@ $(document).ready(function () {
       $(".edit_password_confirmation").html("")
     })
   })
+
+// delete user
+  $(document).on("click", ".user-delete-btn", function (e) {
+    e.preventDefault()
+
+    var id = $(this).attr("id")
+
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+    });
+
+    $.ajax({
+      type: "DELETE",
+      url: "/admin/users/delete/"+id,
+      dataType: "json",
+      success: function (response) {
+        if(response.status == 400) {
+          $('.message_error').html("");
+          $('.message_error').append(response.message);
+        } else if(response.status == 200) {
+          $('.message_success').html("");
+          $('.message_success').append(response.message);
+        } else {
+          $('.message_error').html("");
+          $('.message_error').append(response.message);
+        }
+      }
+    });
+  });
 })
 
 

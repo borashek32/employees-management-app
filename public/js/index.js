@@ -102,7 +102,7 @@ $(document).ready(function () {
 
         if (response.status == 200) {
           $.each(response.users, function (key, item) {
-            $("tbody").append("<tr>            <td>" + item.id + "</td>            <td>" + item.username + "</td>            <td>" + item.email + "</td>            <td><button type=\"button\" id=\"" + item.id + "\" class=\"btn btn-info btn-sm user-show-btn\">Show</button>            <button type=\"button\" id=\"" + item.id + "\" class=\"btn btn-primary btn-sm user-edit-btn\">Edit</button>            <button type=\"button\" id=\"" + item.id + "\" class=\"btn btn-danger btn-sm\">Delete</button></td>          </tr>");
+            $("tbody").append("<tr>            <td>" + item.id + "</td>            <td>" + item.username + "</td>            <td>" + item.email + "</td>            <td><button type=\"button\" id=\"" + item.id + "\" class=\"btn btn-info btn-sm user-show-btn\">Show</button>            <button type=\"button\" id=\"" + item.id + "\" class=\"btn btn-primary btn-sm user-edit-btn\">Edit</button>            <button type=\"button\" id=\"" + item.id + "\" class=\"btn btn-danger btn-sm user-delete-btn\">Delete</button></td>          </tr>");
           });
         } else {
           $('.message_error').html("");
@@ -248,12 +248,9 @@ $(document).ready(function () {
       data: data,
       dataType: "json",
       success: function success(response) {
-        console.log(response.messages);
+        console.log(response.status);
 
-        if (response.status == 400) {
-          $('.edit_password_confirmation').html("");
-          $('.edit_password_confirmation').append(response.message);
-        } else if (response.status == 404) {
+        if (response.status == 404) {
           $.each(response.messages.password, function (key, error_values) {
             $('.edit_password').html("");
             $('.edit_password').append(error_values);
@@ -278,6 +275,33 @@ $(document).ready(function () {
     });
     $("#edit_password_confirmation").focusin(function () {
       $(".edit_password_confirmation").html("");
+    });
+  }); // delete user
+
+  $(document).on("click", ".user-delete-btn", function (e) {
+    e.preventDefault();
+    var id = $(this).attr("id");
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+    });
+    $.ajax({
+      type: "DELETE",
+      url: "/admin/users/delete/" + id,
+      dataType: "json",
+      success: function success(response) {
+        if (response.status == 400) {
+          $('.message_error').html("");
+          $('.message_error').append(response.message);
+        } else if (response.status == 200) {
+          $('.message_success').html("");
+          $('.message_success').append(response.message);
+        } else {
+          $('.message_error').html("");
+          $('.message_error').append(response.message);
+        }
+      }
     });
   });
 }); // $.ajax({
