@@ -12,7 +12,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <p class="h5 mb-0 text-gray-800">Create new user</p>
-        <button type="button" class="close close-create-user-form" data-dismiss="modal" 
+        <button type="button" class="close close-create-user-form" data-dismiss="modal"
           aria-label="Close">
           &times;
         </button>
@@ -22,7 +22,7 @@
         <div class="form-group">
           <label for="formGroupExampleInput">Username</label>
 
-          <input type="text" class="form-control username" id="username" 
+          <input type="text" class="form-control username" id="username"
             placeholder="Enter username">
 
           <span class="text-danger username">
@@ -33,7 +33,7 @@
         <div class="form-group">
           <label for="formGroupExampleInput2">First Name</label>
 
-          <input type="text" class="form-control" id="first_name" 
+          <input type="text" class="form-control" id="first_name"
             placeholder="Enter name">
 
           <span class="text-danger first_name">
@@ -43,7 +43,7 @@
 
         <div class="form-group">
           <label for="formGroupExampleInput2">Last Name</label>
-          <input type="text" class="form-control" id="last_name" 
+          <input type="text" class="form-control" id="last_name"
             placeholder="Enter surname">
 
           <span class="text-danger last_name">
@@ -54,9 +54,9 @@
         <div class="form-group">
           <label for="formGroupExampleInput2">Email Address</label>
 
-          <input type="text" class="form-control" id="email" 
+          <input type="text" class="form-control" id="email"
             placeholder="Enter email address">
-          
+
           <span class="text-danger email">
             <strong></strong>
           </span>
@@ -65,7 +65,7 @@
         <div class="form-group">
           <label for="formGroupExampleInput2">Password</label>
 
-          <input type="password" class="form-control" id="password" 
+          <input type="password" class="form-control" id="password"
             placeholder="Enter password">
 
           <span class="text-danger password">
@@ -76,7 +76,7 @@
         <div class="form-group">
           <label for="formGroupExampleInput2">Confirm password</label>
 
-          <input type="password" class="form-control" id="password_confirmation" 
+          <input type="password" class="form-control" id="password_confirmation"
             placeholder="Enter password one more time">
 
           <span class="text-danger password_confirmation">
@@ -89,7 +89,7 @@
             data-dismiss="modal" aria-label="Close">
             Close
           </button>
-          
+
           <div class="btn btn-primary create-user-btn" >
             Save
           </div>

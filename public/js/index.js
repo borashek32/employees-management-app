@@ -50,9 +50,7 @@ $(document).ready(function () {
             $('.password_confirmation').append(error_values);
           });
         } else if (response.status == 200) {
-          $("#createUserModal").addClass("d-none");
-          $(".modal-backdrop").addClass("d-none");
-          $("body").removeClass("modal-open");
+          $("#createUserModal .close").click();
           $("#createUserModal").find('input').val("");
           $("span").html("");
           $(".message_success").html("");
@@ -65,7 +63,7 @@ $(document).ready(function () {
         }
       }
     });
-  }); // clear inputs in create form
+  }); // clear errors in create form
 
   $("#username").focusin(function () {
     $(".username").html("");
@@ -215,7 +213,7 @@ $(document).ready(function () {
           $('.message-danger').append(response.message);
         }
       }
-    }); // clear update form inputs
+    }); // clear update form errors
 
     $("#edit_username").focusin(function () {
       $(".edit_username").html("");
@@ -289,17 +287,22 @@ $(document).ready(function () {
     $.ajax({
       type: "DELETE",
       url: "/admin/users/delete/" + id,
-      dataType: "json",
       success: function success(response) {
+        console.log(response.message);
+
         if (response.status == 400) {
-          $('.message_error').html("");
-          $('.message_error').append(response.message);
+          $(".message_error").text("");
+          $(".message_error").append(response.msg);
+          $(".message_error").hide(6000);
         } else if (response.status == 200) {
-          $('.message_success').html("");
-          $('.message_success').append(response.message);
+          $(".message_success").text("");
+          $(".message_success").append(response.msg);
+          $(".message_success").hide(6000);
+          fetchUsers();
         } else {
-          $('.message_error').html("");
-          $('.message_error').append(response.message);
+          $(".message_error").text("");
+          $(".message_error").append(response.msg);
+          $(".message_error").hide(6000);
         }
       }
     });
