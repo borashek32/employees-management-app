@@ -8,19 +8,15 @@
       <p class="h5 mb-0 text-gray-800">Users List</p>
   </div>
 
-  <span class="text-success message_success">
-    <strong></strong>
-  </span>
+  <span class="text-success message_success"></span>
 
-  <span class="text-danger message_error">
-    <strong></strong>
-  </span>
+  <span class="text-danger message_error"></span>
 
   <div class="card">
     <div class="card-header d-flex flex-row justify-content-between bd-highlight mb-3">
-      {{-- @include('admin.users.search') --}}
-
       @include('admin.users.create')
+      @include('admin.users.search')
+
     </div>
 
     <div class="card-body">

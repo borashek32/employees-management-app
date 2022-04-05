@@ -63,10 +63,10 @@ $(document).ready(function () {
         } else if(response.status == 200) {
           $("#createUserModal .close").click()
           $("#createUserModal").find('input').val("")
-          $("span").html("")
+          $(".text-danger").html("")
           $(".message_success").html("")
           $(".message_success").append(response.message)
-          $(".message_success").hide(6000)
+        //   $(".message_success").hide(6000)
           fetchUsers()
 
         } else {
@@ -118,9 +118,11 @@ $(document).ready(function () {
       success: function (response) {
         $("tbody").html("")
         if(response.status == 200) {
+            i = 0
           $.each(response.users, function (key, item) {
-            $("tbody").append(`<tr>\
-            <td>`+item.id+`</td>\
+              i = i+1
+            $("tbody").append(`<tr class="decimal">\
+            <td>`+i+`</td>\
             <td>`+item.username+`</td>\
             <td>`+item.email+`</td>\
             <td><button type="button" id="`+item.id+`" class="btn btn-info btn-sm user-show-btn">Show</button>\
@@ -244,10 +246,10 @@ $(document).ready(function () {
         } else if(response.status == 200) {
           $("#editUserModal").modal("hide")
           $("#editUserModal").find('input').val("")
-          $("span").html("")
+          $(".text-error").html("")
           $(".message_success").html("")
           $(".message_success").append(response.message)
-          $(".message_success").hide(6000)
+        //   $(".message_success").hide(6000)
           fetchUsers()
 
         } else {
@@ -311,10 +313,10 @@ $(document).ready(function () {
         } else {
           $("#editUserModal").modal("hide")
           $("#editUserModal").find('input').val("")
-          $("span").html("")
+          $(".text-error").html("")
           $(".message_success").html("")
           $(".message_success").append(response.message)
-          $(".message_success").hide(6000)
+        //   $(".message_success").hide(6000)
           fetchUsers()
         }
       }
@@ -347,22 +349,36 @@ $(document).ready(function () {
       success: function (response) {
         console.log(response.message)
         if(response.status == 400) {
-
           $(".message_error").text("");
-          $(".message_error").append(response.msg);
-          $(".message_error").hide(6000)
+          $(".message_error").text(response.msg);
+        //   $(".message_error").hide(6000)
 
         } else if(response.status == 200) {
           $(".message_success").text("");
           $(".message_success").append(response.msg);
-          $(".message_success").hide(6000)
+        //   $(".message_success").hide(6000)
           fetchUsers()
 
         } else {
           $(".message_error").text("");
           $(".message_error").append(response.msg);
-          $(".message_error").hide(6000)
+        //   $(".message_error").hide(6000)
         }
+      }
+    });
+  });
+
+  $(document).on("click", ".search-users-btn", function (e) {
+    e.preventDefault()
+
+    var data = $("#searchUsers").val()
+console.log(data)
+    $.ajax({
+      type: "GET",
+      url: "/admin/users/search",
+      dataType: "json",
+      success: function (response) {
+        console.log(response.status)
       }
     });
   });

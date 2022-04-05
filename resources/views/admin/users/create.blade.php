@@ -25,9 +25,7 @@
           <input type="text" class="form-control username" id="username"
             placeholder="Enter username">
 
-          <span class="text-danger username">
-            <strong></strong>
-          </span>
+          <span class="text-danger username"></span>
         </div>
 
         <div class="form-group">
@@ -36,9 +34,7 @@
           <input type="text" class="form-control" id="first_name"
             placeholder="Enter name">
 
-          <span class="text-danger first_name">
-            <strong></strong>
-          </span>
+          <span class="text-danger first_name"></span>
         </div>
 
         <div class="form-group">
@@ -46,9 +42,7 @@
           <input type="text" class="form-control" id="last_name"
             placeholder="Enter surname">
 
-          <span class="text-danger last_name">
-            <strong></strong>
-          </span>
+          <span class="text-danger last_name"></span>
         </div>
 
         <div class="form-group">
@@ -68,9 +62,7 @@
           <input type="password" class="form-control" id="password"
             placeholder="Enter password">
 
-          <span class="text-danger password">
-            <strong></strong>
-          </span>
+          <span class="text-danger password"></span>
         </div>
 
         <div class="form-group">
@@ -79,9 +71,7 @@
           <input type="password" class="form-control" id="password_confirmation"
             placeholder="Enter password one more time">
 
-          <span class="text-danger password_confirmation">
-            <strong></strong>
-          </span>
+          <span class="text-danger password_confirmation"></span>
         </div>
 
         <div class="modal-footer">
@@ -90,7 +80,7 @@
             Close
           </button>
 
-          <div class="btn btn-primary create-user-btn" >
+          <div class="btn btn-primary create-user-btn">
             Save
           </div>
         </div>

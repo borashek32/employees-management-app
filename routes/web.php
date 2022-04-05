@@ -23,6 +23,7 @@ Route::prefix('admin')->name('admin.')->group(function() {
     Route::put('/update/{id}', [UserController::class, 'update']);
     Route::post('/users/change-password/{id}', [UserChangePasswordController::class, 'changePassword']);
     Route::delete('/users/delete/{id}', [UserController::class, 'deleteUser']);
+    Route::get('/users/search', [UserController::class, 'search']);
 
     Route::resource('/countries', CountryController::class);
 });
