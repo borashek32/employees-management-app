@@ -10,7 +10,7 @@
 
     <link rel="icon" href="/favicon.png">
 
-    <title>Admin Dashboard</title>
+    <title>User Dashboard</title>
 
     <!-- Custom fonts for this template-->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet" type="text/css">
@@ -31,7 +31,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        @include('includes.admin.sidebar.sidebar')
+        @include('includes.user.sidebar.sidebar')
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -41,7 +41,7 @@
             <div id="content">
 
                 <!-- Topbar -->
-                @include('includes.admin.navbar.navbar')
+                @include('includes.user.navbar.navbar')
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
@@ -58,7 +58,7 @@
             <!-- End of Main Content -->
 
             <!-- Footer -->
-            @include('includes.admin.footer.footer')
+            @include('includes.user.footer.footer')
             <!-- End of Footer -->
 
         </div>
@@ -94,7 +94,7 @@
 
     <script src="{{ asset('js/jquery/jquery.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
-    <script src="{{ asset('js/jquery-easing/jquery.easing.min.j') }}s"></script>
+    <script src="{{ asset('js/jquery-easing/jquery.easing.min.j') }}"></script>
     <!-- Custom scripts for all pages-->
     <script src="{{ asset('js/sb-admin.min.js') }}"></script>
     <script src="{{ mix('js/app.js') }}"></script>

@@ -16,7 +16,6 @@
     <div class="card-header d-flex flex-row justify-content-between bd-highlight mb-3">
       @include('admin.users.create')
       @include('admin.users.search')
-
     </div>
 
     <div class="card-body">
@@ -29,10 +28,14 @@
             <th scope="col">Actions</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody id="users">
 
         </tbody>
       </table>
     </div>
   </div>
+@endsection
+
+@section('scripts')
+    <script src="{{ mix('js/admin/users.js') }}"></script>
 @endsection

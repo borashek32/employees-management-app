@@ -17,6 +17,7 @@ class UserSeeder extends Seeder
                 'last_name'       => 'Zueva',
                 'email'           => 'borashek@inbox.ru',
                 'password'        => Hash::make('11111111'),
+                'role_id'         => '1'
             ],
             [
                 'username'        => 'vadim',
@@ -24,6 +25,7 @@ class UserSeeder extends Seeder
                 'last_name'       => 'Zuev',
                 'email'           => 'borashek88@gmail.com',
                 'password'        => Hash::make('22222222'),
+                'role_id'         => '2'
             ],
         ]);
     }

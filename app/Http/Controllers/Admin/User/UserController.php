@@ -12,51 +12,9 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
-        // if ($request->has('search')) {
-        //     $users = User::where('username', 'like', "%{$request->search}%")
-        //         ->orWhere('email', 'like', "%{$request->search}%")
-        //         ->get();
-        // }
         return view('admin.users.index');
-    }
-
-    public function search(Request $request)
-    {
-        $users = User::all();
-
-        if($users) {
-            $search = $request->input('search');
-
-            if($search) {
-                $users = User::where('username', 'like', "%{$request->search}%")
-                            ->orWhere('email', 'like', "%{$request->search}%")
-                            ->get();
-
-                if($users) {
-                    return response()->json([
-                        'status'   => 201,
-                        'users'    => $users
-                    ]);
-                } else {
-                    return response()->json([
-                        'status'   => 404,
-                        'message'  => 'Nothing found for your request'
-                    ]);
-                }
-            } else {
-                return response()->json([
-                    'status'   => 200,
-                    'users'    => $users
-                ]);
-            }
-        } else {
-            return response()->json([
-                'status'   => 400,
-                'message'  => "Something went wrong while loading a data"
-            ]);
-        }
     }
 
     public function fetch()

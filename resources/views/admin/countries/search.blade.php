@@ -1,16 +1,10 @@
-<form method="GET" action="{{ route('countries.index') }}">
-  <div class="form-row align-items-center">
-    <div class="col-auto">
-      <input type="search" class="form-control mb-2" id="inlineFormInput" 
-          name="search" placeholder="Canada">
+<form method="#" action="#">
+  <div class="input-group mb-3 mt-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="inputGroup-sizing-default">Search</span>
     </div>
-    
-    <div class="col-auto">
-      <button type="submit" class="btn btn-primary mb-2">Search</button>
-      
-      <a href="{{ route('users.index') }}">
-          <button type="button" class="btn btn-secondary mb-2">Refresh</button>
-      </a>
-    </div>
+    <input type="text" class="form-control" aria-label="Sizing example input"
+      aria-describedby="inputGroup-sizing-default" id="searchCountries"
+      placeholder="Type name or code"  name="search">
   </div>
 </form>

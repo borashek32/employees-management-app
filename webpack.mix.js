@@ -13,9 +13,8 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js')
 
-    .scripts([
-        'resources/js/admin/users.js'
-    ],'public/js/index.js', 'public/js')
+    .js('resources/js/admin/users.js', 'public/js/admin')
+    .js('resources/js/admin/countries.js', 'public/js/admin')
 
     .vue()
 

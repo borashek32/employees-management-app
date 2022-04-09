@@ -1,13 +1,10 @@
-<form method="GET" action="#">
-  <div class="form-row align-items-center">
-    <div class="col-auto">
-      <label class="sr-only" for="inlineFormInput">Name</label>
-      <input type="search" class="form-control mb-2" id="searchUsers"
-          placeholder="Jane Doe">
+<form method="#" action="#">
+  <div class="input-group mb-3 mt-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="inputGroup-sizing-default">Search</span>
     </div>
-
-    <div class="col-auto">
-      <button type="button" class="btn btn-primary mb-2 search-users-btn">Search</button>
-    </div>
+    <input type="text" class="form-control" aria-label="Sizing example input"
+      aria-describedby="inputGroup-sizing-default" id="searchUsers"
+      placeholder="Type name or email"  name="search">
   </div>
 </form>

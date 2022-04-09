@@ -1,4 +1,34 @@
 $(document).ready(function () {
+// output all users
+  fetchUsers()
+
+  function fetchUsers() {
+    $.ajax({
+      type: "GET",
+      url: "/admin/users-fetch",
+      dataType: "json",
+      success: function (response) {
+        $("#users").html("")
+        if(response.status == 200) {
+            i = 0
+          $.each(response.users, function (key, item) {
+              i = i+1
+            $("#users").append(`<tr>\
+            <td>`+i+`</td>\
+            <td>`+item.username+`</td>\
+            <td>`+item.email+`</td>\
+            <td><button type="button" id="`+item.id+`" class="btn btn-info btn-sm user-show-btn">Show</button>\
+            <button type="button" id="`+item.id+`" class="btn btn-primary btn-sm user-edit-btn">Edit</button>\
+            <button type="button" id="`+item.id+`" class="btn btn-danger btn-sm user-delete-btn">Delete</button></td>\
+          </tr>`);
+          });
+        } else {
+          $('.message_error').html("");
+          $('.message_error').append(response.message);
+        }
+      }
+    })
+  }
 
  // create user
   $(document).on("click", ".create-user-btn", function (e) {
@@ -107,37 +137,6 @@ $(document).ready(function () {
     $(".text-danger").html("")
   });
 
-// output all users
-  fetchUsers()
-
-  function fetchUsers() {
-    $.ajax({
-      type: "GET",
-      url: "/admin/users-fetch",
-      dataType: "json",
-      success: function (response) {
-        $("tbody").html("")
-        if(response.status == 200) {
-            i = 0
-          $.each(response.users, function (key, item) {
-              i = i+1
-            $("tbody").append(`<tr class="decimal">\
-            <td>`+i+`</td>\
-            <td>`+item.username+`</td>\
-            <td>`+item.email+`</td>\
-            <td><button type="button" id="`+item.id+`" class="btn btn-info btn-sm user-show-btn">Show</button>\
-            <button type="button" id="`+item.id+`" class="btn btn-primary btn-sm user-edit-btn">Edit</button>\
-            <button type="button" id="`+item.id+`" class="btn btn-danger btn-sm user-delete-btn">Delete</button></td>\
-          </tr>`);
-          });
-        } else {
-          $('.message_error').html("");
-          $('.message_error').append(response.message);
-        }
-      }
-    })
-  }
-
 // show one user
   $(document).on("click", ".user-show-btn", function (e) {
     e.preventDefault();
@@ -173,7 +172,6 @@ $(document).ready(function () {
 
     var id = $(this).attr("id");
     $("#editUserModal").modal("show")
-    $("#showUserModal").modal("hide")
 
     $.ajax({
       type: "GET",
@@ -347,7 +345,6 @@ $(document).ready(function () {
       type: "DELETE",
       url: "/admin/users/delete/"+id,
       success: function (response) {
-        console.log(response.message)
         if(response.status == 400) {
           $(".message_error").text("");
           $(".message_error").text(response.msg);
@@ -368,27 +365,45 @@ $(document).ready(function () {
     });
   });
 
-  $(document).on("click", ".search-users-btn", function (e) {
+// search users
+  $(document).on("keyup", "#searchUsers", function (e) {
     e.preventDefault()
 
-    var data = $("#searchUsers").val()
-console.log(data)
-    $.ajax({
-      type: "GET",
-      url: "/admin/users/search",
-      dataType: "json",
-      success: function (response) {
-        console.log(response.status)
+    var query = $("#searchUsers").val()
+
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
       }
     });
-  });
+
+    $.ajax({
+      type: "POST",
+      url: "/admin/users/search",
+      data: {
+        "search": query,
+      },
+      dataType: "json",
+      success: function (response) {
+        $("#users").html("")
+        if(response.status == 200) {
+            i = 0
+          $.each(response.users, function (key, item) {
+              i = i+1
+            $("#users").append(`<tr>\
+            <td>`+i+`</td>\
+            <td>`+item.username+`</td>\
+            <td>`+item.email+`</td>\
+            <td><button type="button" id="`+item.id+`" class="btn btn-info btn-sm user-show-btn">Show</button>\
+            <button type="button" id="`+item.id+`" class="btn btn-primary btn-sm user-edit-btn">Edit</button>\
+            <button type="button" id="`+item.id+`" class="btn btn-danger btn-sm user-delete-btn">Delete</button></td>\
+          </tr>`);
+          });
+        } else {
+          $('.message_error').html("");
+          $('.message_error').append(response.message);
+        }
+      }
+    })
+  })
 })
-
-
-// $.ajax({
-//     type: "POST",
-//     url: "{{route('profile.store', ['id' => Auth::user()->id])}}",
-//     data: formData, //pass to our Ajax data to send
-//     success: function (data) {
-//         $("#textpost").html($(data).find("#textpost").html());
-//     },
