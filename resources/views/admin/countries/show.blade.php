@@ -10,8 +10,10 @@
       <div class="modal-body">
         <div class="w-75">
           <div class="">
-            <p class="show-country-name">Name: </p>
-            <p class="show-country-code">Code: </p>
+            <p>Name:</p>
+            <p class="show-country-name"></p>
+            <p>Code:</p>
+            <p class="show-country-code"></p>
           </div>
         </div>
       </div>

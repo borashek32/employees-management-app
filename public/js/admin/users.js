@@ -141,6 +141,10 @@ $(document).ready(function () {
   });
   $(document).on("click", ".close-show-user", function () {
     $("#showUserModal").modal("hide");
+    $(".show-user-username").html("");
+    $(".show-user-first_name").html("");
+    $(".show-user-last_name").html("");
+    $(".show-user-email").html("");
   }); // edit user
 
   $(document).on("click", ".user-edit-btn", function (e) {
@@ -211,8 +215,7 @@ $(document).ready(function () {
           $("#editUserModal").find('input').val("");
           $(".text-error").html("");
           $(".message_success").html("");
-          $(".message_success").append(response.message); //   $(".message_success").hide(6000)
-
+          $(".message_success").append(response.message);
           fetchUsers();
         } else {
           $('.message-danger').html("");
@@ -268,8 +271,7 @@ $(document).ready(function () {
           $("#editUserModal").find('input').val("");
           $(".text-error").html("");
           $(".message_success").html("");
-          $(".message_success").append(response.message); //   $(".message_success").hide(6000)
-
+          $(".message_success").append(response.message);
           fetchUsers();
         }
       }
@@ -296,15 +298,14 @@ $(document).ready(function () {
       success: function success(response) {
         if (response.status == 400) {
           $(".message_error").text("");
-          $(".message_error").text(response.msg); //   $(".message_error").hide(6000)
+          $(".message_error").text(response.msg);
         } else if (response.status == 200) {
           $(".message_success").text("");
-          $(".message_success").append(response.msg); //   $(".message_success").hide(6000)
-
+          $(".message_success").append(response.msg);
           fetchUsers();
         } else {
           $(".message_error").text("");
-          $(".message_error").append(response.msg); //   $(".message_error").hide(6000)
+          $(".message_error").append(response.msg);
         }
       }
     });

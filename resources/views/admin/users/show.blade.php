@@ -2,7 +2,8 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <p class="h5 modal-title show-user-username" id="exampleModalLabel">Username: </p>
+        <p>Username: </p>
+        <p class="ml-2 modal-title show-user-username" id="exampleModalLabel"></p>
         <button type="button" class="close close-show-user" data-dismiss="modal" aria-label="Close">
           &times;
         </button>
@@ -10,9 +11,12 @@
       <div class="modal-body">
         <div class="w-75">
           <div class="">
-            <p class="show-user-first_name">First Name: </p>
-            <p class="show-user-last_name">Last Name: </p>
-            <p class="show-user-email">Email: </p>
+            <p>First Name:</p>
+            <p class="show-user-first_name"></p>
+            <p>Last Name:</p>
+            <p class="show-user-last_name"></p>
+            <p>Email:</p>
+            <p class="show-user-email"></p>
           </div>
         </div>
       </div>

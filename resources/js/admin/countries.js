@@ -107,7 +107,6 @@ $(document).ready(function () {
         if(response.status == 200) {
           $(".show-country-name").append(response.country.name)
           $(".show-country-code").append(response.country.code)
-          $("#country_id").val(response.country.id)
 
         } else {
           $(".message_error").append(response.message)
@@ -118,6 +117,8 @@ $(document).ready(function () {
 
   $(document).on("click", ".close-show-country", function () {
     $("#showCountryModal").modal("hide")
+    $(".show-country-name").html("")
+    $(".show-country-code").html("")
   });
 
 // edit country

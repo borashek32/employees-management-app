@@ -27,7 +27,7 @@ class CountryController extends Controller
         } else {
             return response()->json([
                 'status'   => 400,
-                'message'  => "Something went wrong while loading a data"
+                'message'  => "Something went wrong while loading data"
             ]);
         }
     }

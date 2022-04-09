@@ -64,7 +64,7 @@
             data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item" href="{{ route('admin.countries.index') }}">Country</a>
-                <a class="collapse-item" href="utilities-border.html">State</a>
+                <a class="collapse-item" href="{{ route('admin.states.index') }}">State</a>
                 <a class="collapse-item" href="utilities-animation.html">Department</a>
                 <a class="collapse-item" href="utilities-other.html">City</a>
             </div>

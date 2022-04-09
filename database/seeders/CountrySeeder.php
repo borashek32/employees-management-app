@@ -30,6 +30,10 @@ class CountrySeeder extends Seeder
             [
                 'name' => 'Turkey',
                 'code' => '4'
+            ],
+            [
+                'name' => 'Mexico',
+                'code' => '5'
             ]
         ]);
     }
