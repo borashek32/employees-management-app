@@ -49,6 +49,13 @@ Route::prefix('admin')->name('admin.')->group(function() {
   Route::get('/states/edit/{id}', [App\Http\Controllers\Admin\State\StateController::class, 'edit']);
   Route::put('/states/update/{id}', [App\Http\Controllers\Admin\State\StateController::class, 'update']);
   Route::post('/states/search', [App\Http\Controllers\Admin\State\StateSearchController::class, 'search']);
+
+  Route::get('/cities', [App\Http\Controllers\Admin\City\CityController::class, 'index'])
+      ->name('cities.index');
+  Route::get('/cities-fetch', [App\Http\Controllers\Admin\City\CityController::class, 'fetch']);
+
+  Route::get('/roles', [App\Http\Controllers\Admin\Role\RoleController::class, 'index'])
+      ->name('roles.index');
 });
 
 Auth::routes();

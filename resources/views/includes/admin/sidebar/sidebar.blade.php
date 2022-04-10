@@ -31,8 +31,9 @@
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="buttons.html">Create</a>
-                <a class="collapse-item" href="cards.html">User List</a>
+              <a class="collapse-item" href="utilities-animation.html">Company</a>
+              <a class="collapse-item" href="utilities-animation.html">Department</a>
+              <a class="collapse-item" href="cards.html">Emploees</a>
             </div>
         </div>
     </li>
@@ -46,8 +47,8 @@
         </a>
         <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="{{ route('admin.users.index') }}">Users List</a>
-                <a class="collapse-item" href="cards.html">Role</a>
+                <a class="collapse-item" href="{{ route('admin.users.index') }}">Users</a>
+                <a class="collapse-item" href="{{ route('admin.roles.index') }}">Roles</a>
                 <a class="collapse-item" href="cards.html">Permissions</a>
             </div>
         </div>
@@ -63,10 +64,9 @@
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
             data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="{{ route('admin.countries.index') }}">Country</a>
-                <a class="collapse-item" href="{{ route('admin.states.index') }}">State</a>
-                <a class="collapse-item" href="utilities-animation.html">Department</a>
-                <a class="collapse-item" href="utilities-other.html">City</a>
+                <a class="collapse-item" href="{{ route('admin.countries.index') }}">Countries</a>
+                <a class="collapse-item" href="{{ route('admin.states.index') }}">States</a>
+                <a class="collapse-item" href="{{ route('admin.cities.index') }}">Cities</a>
             </div>
         </div>
     </li>

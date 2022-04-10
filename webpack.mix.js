@@ -16,6 +16,8 @@ mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/admin/users.js', 'public/js/admin')
     .js('resources/js/admin/countries.js', 'public/js/admin')
     .js('resources/js/admin/states.js', 'public/js/admin')
+    .js('resources/js/admin/cities.js', 'public/js/admin')
+    .js('resources/js/admin/roles.js', 'public/js/admin')
 
     .vue()
 
