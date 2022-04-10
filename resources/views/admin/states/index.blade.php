@@ -14,7 +14,7 @@
 
   <div class="card">
     <div class="card-header d-flex flex-row-reverse justify-content-between bd-highlight">
-      {{-- @include('admin.states.search') --}}
+      @include('admin.states.search')
 
       @include('admin.states.create')
     </div>

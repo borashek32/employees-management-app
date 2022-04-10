@@ -11,9 +11,10 @@ class StateSearchController extends Controller
   public function search(Request $request)
   {
     if($request->ajax()) {
-      $states = Country::where('name', 'like', "%{$request->search}%")
+      $states = State::where('name', 'like', "%{$request->search}%")
                 ->orWhere('country_id', 'like', "%{$request->search}%")
-                ->get();
+                ->get()
+                ->load('country');
 
       if($states) {
         return response()->json([

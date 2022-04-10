@@ -158,7 +158,7 @@ $(document).ready(function () {
   $(document).on("click", ".close-edit-state-form", function () {
     $("#editStateModal").modal("hide");
     $(".edit-country-select").html("");
-  }); // update country
+  }); // update state
 
   $(document).on("click", ".update-state-btn", function (e) {
     e.preventDefault();
@@ -229,6 +229,38 @@ $(document).ready(function () {
           $(".message_success").text("");
           $(".message_success").append(response.msg);
           fetchStates();
+        }
+      }
+    });
+  }); // search states
+
+  $(document).on("keyup", "#searchStates", function (e) {
+    e.preventDefault();
+    var query = $("#searchStates").val();
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+    });
+    $.ajax({
+      type: "POST",
+      url: "/admin/states/search",
+      data: {
+        "search": query
+      },
+      dataType: "json",
+      success: function success(response) {
+        $("#states").html("");
+
+        if (response.status == 200) {
+          i = 0;
+          $.each(response.states, function (key, item) {
+            i = i + 1;
+            $("#states").append("<tr>            <td>" + i + "</td>            <td>" + item.country.name + "</td>            <td>" + item.name + "</td>            <td><button type=\"button\" id=\"" + item.id + "\" class=\"btn btn-info btn-sm state-show-btn\">Show</button>            <button type=\"button\" id=\"" + item.id + "\" class=\"btn btn-primary btn-sm state-edit-btn\">Edit</button>            <button type=\"button\" id=\"" + item.id + "\" class=\"btn btn-danger btn-sm state-delete-btn\">Delete</button></td>          </tr>");
+          });
+        } else {
+          $('.message_error').html("");
+          $('.message_error').append(response.message);
         }
       }
     });

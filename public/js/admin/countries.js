@@ -229,7 +229,7 @@ $(document).ready(function () {
           i = 0;
           $.each(response.countries, function (key, item) {
             i = i + 1;
-            $("#countries").append("<tr>            <td>" + i + "</td>            <td>" + item.name + "</td>            <td>" + item.code + "</td>            <td><button type=\"button\" id=\"" + item.id + "\" class=\"btn btn-info btn-sm user-show-btn\">Show</button>            <button type=\"button\" id=\"" + item.id + "\" class=\"btn btn-primary btn-sm user-edit-btn\">Edit</button>            <button type=\"button\" id=\"" + item.id + "\" class=\"btn btn-danger btn-sm user-delete-btn\">Delete</button></td>          </tr>");
+            $("#countries").append("<tr>            <td>" + i + "</td>            <td>" + item.name + "</td>            <td>" + item.code + "</td>            <td><button type=\"button\" id=\"" + item.id + "\" class=\"btn btn-info btn-sm country-show-btn\">Show</button>            <button type=\"button\" id=\"" + item.id + "\" class=\"btn btn-primary btn-sm country-edit-btn\">Edit</button>            <button type=\"button\" id=\"" + item.id + "\" class=\"btn btn-danger btn-sm country-delete-btn\">Delete</button></td>          </tr>");
           });
         } else {
           $('.message_error').html("");
