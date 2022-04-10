@@ -2,7 +2,7 @@
 
 @section('content')
   @include('admin.states.show')
-  {{-- @include('admin.states.edit') --}}
+  @include('admin.states.edit')
 
   <div class="d-sm-flex align-items-center justify-content-between mb-2 mt-2">
     <p class="h5 mb-0 text-gray-800">States List</p>

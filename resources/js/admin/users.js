@@ -170,6 +170,14 @@ $(document).ready(function () {
     $(".show-user-email").html("")
   });
 
+  $(document).on("click", "body", function () {
+    $("#showUserModal").modal("hide")
+    $(".show-user-username").html("")
+    $(".show-user-first_name").html("")
+    $(".show-user-last_name").html("")
+    $(".show-user-email").html("")
+  });
+
 // edit user
   $(document).on("click", ".user-edit-btn", function (e) {
     e.preventDefault()

@@ -18,7 +18,7 @@
         </button>
       </div>
 
-      <div class="modal-body">
+      <form class="modal-body">
         <div class="form-group">
           <label for="formGroupExampleInput">Name</label>
 
@@ -30,14 +30,14 @@
 
         <div class="form-group">
           <select class="custom-select country-select" id="country_id">
-
+            <option value="" selected>Select country</option>
           </select>
 
           <span class="text-danger country_id"></span>
         </div>
 
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary close-create-state-form"
+          <button type="submit" class="btn btn-secondary close-create-state-form"
             data-dismiss="modal" aria-label="Close">
             Close
           </button>
@@ -46,7 +46,7 @@
             Save
           </div>
         </div>
-      </div>
+      </form>
     </div>
   </div>
 </div>

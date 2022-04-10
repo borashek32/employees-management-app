@@ -121,6 +121,12 @@ $(document).ready(function () {
     $(".show-country-code").html("")
   });
 
+  $(document).on("click", "body", function () {
+    $("#showCountryModal").modal("hide")
+    $(".show-country-name").html("")
+    $(".show-country-code").html("")
+  });
+
 // edit country
   $(document).on("click", ".country-edit-btn", function (e) {
     e.preventDefault()
@@ -137,7 +143,6 @@ $(document).ready(function () {
           $("#edit_name").val(response.country.name)
           $("#edit_code").val(response.country.code)
           $("#country_id").val(response.country.id)
-
 
         } else {
           $(".message_error").append(response.message)

@@ -45,6 +45,10 @@ Route::prefix('admin')->name('admin.')->group(function() {
   Route::get('/states-create', [App\Http\Controllers\Admin\State\StateController::class, 'create']);
   Route::post('/states', [App\Http\Controllers\Admin\State\StateController::class, 'store']);
   Route::get('/states/{id}', [App\Http\Controllers\Admin\State\StateController::class, 'show']);
+  Route::delete('/states/delete/{id}', [App\Http\Controllers\Admin\State\StateController::class, 'delete']);
+  Route::get('/states/edit/{id}', [App\Http\Controllers\Admin\State\StateController::class, 'edit']);
+  Route::put('/states/update/{id}', [App\Http\Controllers\Admin\State\StateController::class, 'update']);
+  Route::post('/states/search', [App\Http\Controllers\Admin\State\StateSearchController::class, 'search']);
 });
 
 Auth::routes();

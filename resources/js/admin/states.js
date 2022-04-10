@@ -44,8 +44,8 @@ $(document).ready(function () {
             $(".country-select").append('<option value="'+item.id+'">'+item.name+'</option>')
           });
         } else {
-          $('.message_error').html("");
-          $('.message_error').append(response.message);
+          $('.message_error').html("")
+          $('.message_error').append(response.message)
         }
       }
     })
@@ -53,7 +53,7 @@ $(document).ready(function () {
 
 // store state
   $(document).on("click", ".create-state-btn", function (e) {
-    e.preventDefault();
+    e.preventDefault()
 
     var data ={
       "name": $("#name").val(),
@@ -72,8 +72,7 @@ $(document).ready(function () {
       data: data,
       dataType: "json",
       success: function (response) {
-        console.log(response.status)
-        if(response.status == 400) {
+        if(response.status == 422) {
           $.each(response.messages.name, function (key, error_values) {
             $('.name').html("")
             $('.name').append(error_values)
@@ -81,7 +80,7 @@ $(document).ready(function () {
 
           $.each(response.messages.country_id, function (key, error_values) {
             $('.country_id').html("")
-            $('.country_id').append(error_values)
+            $('.country_id').append('The country field is required')
           });
 
         } else if(response.status == 404) {
@@ -114,7 +113,7 @@ $(document).ready(function () {
     $(".text-danger").html("")
   });
 
-// show one country
+// show one state
   $(document).on("click", ".state-show-btn", function (e) {
     e.preventDefault();
 
@@ -143,4 +142,131 @@ $(document).ready(function () {
     $(".show-state-name").html("")
     $(".show-state-country_id").html("")
   });
+
+  $(document).on("click", "body", function () {
+    $("#showStateModal").modal("hide")
+    $(".show-state-name").html("")
+    $(".show-state-country_id").html("")
+  });
+
+  // edit state
+  $(document).on("click", ".state-edit-btn", function (e) {
+    e.preventDefault()
+
+    var id = $(this).attr("id");
+    $("#editStateModal").modal("show")
+
+    $.ajax({
+      type: "GET",
+      url: "/admin/states/edit/"+id,
+      dataType: "json",
+      success: function (response) {
+        if(response.status == 200) {
+          $("#edit_state_name").val(response.state.name)
+          $("#state_id").val(response.state.id)
+// fetchCountries()
+          $.each(response.countries, function (key, item) {
+            $(".edit-country-select").append('<option value="'+item.id+'">'+item.name+'</option>')
+          });
+
+        } else {
+          $(".message_error").append(response.message)
+        }
+      }
+    });
+  });
+
+  $(document).on("click", ".close-edit-state-form", function () {
+    $("#editStateModal").modal("hide")
+    $(".edit-country-select").html("")
+  });
+
+
+// update country
+  $(document).on("click", ".update-state-btn", function (e) {
+    e.preventDefault()
+
+    var id = $("#state_id").val()
+      data = {
+        "name": $("#edit_state_name").val(),
+        "country_id": $(".edit-country-select").val()
+      }
+
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+    });
+
+    $.ajax({
+      type: "PUT",
+      url: "/admin/states/update/"+id,
+      data: data,
+      dataType: "json",
+      success: function (response) {
+        if(response.status == 422) {
+          $.each(response.messages.name, function (key, error_values) {
+            $('.edit_state_name').html("")
+            $('.edit_state_name').append(error_values)
+          })
+
+          $.each(response.messages.country_id, function (key, error_values) {
+            $('.edit_country_id').html("")
+            $('.edit_country_id').append('The country field is required')
+          })
+
+        } else if(response.status == 200) {
+          $("#editStateModal").modal("hide")
+          $("#editStateModal").find('input').val("")
+          $(".edit-country-select").html("")
+          $(".text-error").html("")
+          $(".message_success").html("")
+          $(".message_success").append(response.message)
+          fetchStates()
+
+        } else {
+          $('.message-danger').html("");
+          $('.message-danger').append(response.message);
+        }
+      }
+    });
+
+// clear update form errors
+    $("#edit_state_name").focusin(function() {
+      $(".edit_state_name").html("")
+      })
+
+    $("#edit_country").focusin(function() {
+      $(".edit_country").html("")
+    })
+  })
+
+// delete state
+  $(document).on("click", ".state-delete-btn", function (e) {
+    e.preventDefault()
+
+    var id = $(this).attr("id")
+
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+    })
+
+    $.ajax({
+      type: "DELETE",
+      url: "/admin/states/delete/"+id,
+      success: function (response) {
+        if(response.status == 400) {
+          $(".message_error").text("")
+          $(".message_error").text(response.msg)
+
+        } else {
+          $(".message_success").text("")
+          $(".message_success").append(response.msg)
+          fetchStates()
+        }
+      }
+    })
+  })
 });

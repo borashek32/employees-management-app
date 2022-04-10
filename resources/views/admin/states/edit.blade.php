@@ -4,44 +4,43 @@
     <div class="modal-content">
       <div class="modal-header">
         <p class="h5 mb-0 text-gray-800">Edit state</p>
-        <button type="button" class="close close-edit-country-form" data-dismiss="modal"
+        <button type="button" class="close close-edit-state-form" data-dismiss="modal"
           aria-label="Close">
           &times;
         </button>
       </div>
 
-      <input type="hidden" value="id" id="country_id">
+      <input type="hidden" value="id" id="state_id">
 
-      <div class="modal-body">
+      <form class="modal-body">
         <div class="form-group">
           <label for="formGroupExampleInput">Name</label>
 
-          <input type="text" class="form-control username" id="edit_name"
+          <input type="text" class="form-control" id="edit_state_name"
             placeholder="Enter name">
 
-          <span class="text-danger edit_name"></span>
+          <span class="text-danger edit_state_name"></span>
         </div>
 
         <div class="form-group">
-          <label for="formGroupExampleInput2">Code</label>
+          <select class="custom-select edit-country-select">
+            <option value="" selected>Choose country</option>
+          </select>
 
-          <input type="text" class="form-control" id="edit_code"
-            placeholder="Enter code">
-
-          <span class="text-danger edit_code"></span>
+          <span class="text-danger edit_country_id"></span>
         </div>
 
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary close-edit-country-form"
+          <button type="button" class="btn btn-secondary close-edit-state-form"
             data-dismiss="modal" aria-label="Close">
             Close
           </button>
 
-          <div class="btn btn-primary update-country-btn" >
+          <div type="submit" class="btn btn-primary update-state-btn" >
             Save
           </div>
         </div>
-      </div>
+      </form>
     </div>
   </div>
 </div>

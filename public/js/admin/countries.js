@@ -104,6 +104,11 @@ $(document).ready(function () {
     $("#showCountryModal").modal("hide");
     $(".show-country-name").html("");
     $(".show-country-code").html("");
+  });
+  $(document).on("click", "body", function () {
+    $("#showCountryModal").modal("hide");
+    $(".show-country-name").html("");
+    $(".show-country-code").html("");
   }); // edit country
 
   $(document).on("click", ".country-edit-btn", function (e) {
