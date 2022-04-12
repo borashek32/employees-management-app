@@ -3,8 +3,8 @@
     "/js/admin/users.js": "/js/admin/users.js",
     "/js/admin/countries.js": "/js/admin/countries.js",
     "/js/admin/states.js": "/js/admin/states.js",
-    "/js/admin/cities.js": "/js/admin/cities.js",
     "/js/admin/roles.js": "/js/admin/roles.js",
+    "/js/admin/cities.js": "/js/admin/cities.js",
     "/css/app.css": "/css/app.css",
     "/css/style.css": "/css/style.css"
 }

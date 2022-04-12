@@ -53,6 +53,7 @@ Route::prefix('admin')->name('admin.')->group(function() {
   Route::get('/cities', [App\Http\Controllers\Admin\City\CityController::class, 'index'])
       ->name('cities.index');
   Route::get('/cities-fetch', [App\Http\Controllers\Admin\City\CityController::class, 'fetch']);
+  Route::get('/cities/{id}', [App\Http\Controllers\Admin\City\CityController::class, 'show']);
 
   Route::get('/roles', [App\Http\Controllers\Admin\Role\RoleController::class, 'index'])
       ->name('roles.index');

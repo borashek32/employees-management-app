@@ -3,60 +3,100 @@ var __webpack_exports__ = {};
 /*!**************************************!*\
   !*** ./resources/js/admin/cities.js ***!
   \**************************************/
-function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-window.onload = function () {
-  requestURL = 'http://127.0.0.1:8000/admin/cities-fetch';
+// fetch all cities
+// window.onload = function() {
+//   requestURL = 'http://127.0.0.1:8000/admin/cities-fetch'
+//   fetchCities()
+//   function fetchCities() {
+//     const xhr = new XMLHttpRequest()
+//     xhr.open('GET', requestURL)
+//     xhr.onload = function() {
+//       if(this.readyState == 4 && this.status == 200) {
+//         let response = JSON.parse(xhr.response)
+//         for(city of response.cities) {
+//           const tbody = document.getElementById("cities")
+//           const row = document.createElement("tr")
+//           const rowNumber = document.createElement("td")
+//           rowNumber.innerHTML = city.id
+//           row.appendChild(rowNumber);
+//           const countryName = document.createElement("td")
+//           countryName.innerHTML = city.country.name
+//           row.appendChild(countryName);
+//           const stateName = document.createElement("td")
+//           stateName.innerHTML = city.state.name
+//           row.appendChild(stateName);
+//           const cityName = document.createElement("td")
+//           cityName.innerHTML = city.name
+//           row.appendChild(cityName);
+//           const cityActions = document.createElement("td")
+//           cityActions.innerHTML = `<button type="button" id="`+city.id+`" class="btn btn-info btn-sm city-show-btn">Show</button>
+//           <button type="button" id="`+city.id+`" class="btn btn-primary btn-sm ml-2 mr-2 city-edit-btn">Edit</button>
+//           <button type="button" id="`+city.id+`" class="btn btn-danger btn-sm city-delete-btn">Delete</button>`
+//           row.appendChild(cityActions);
+//           tbody.appendChild(row);
+//         }
+//       }
+//     }
+//     xhr.send()
+//   }
+// }
+$(document).ready(function () {
+  // output all states
   fetchCities();
 
   function fetchCities() {
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', requestURL);
+    $.ajax({
+      type: "GET",
+      url: "/admin/cities-fetch",
+      dataType: "json",
+      success: function success(response) {
+        $("#cities").html("");
 
-    xhr.onload = function () {
-      if (this.readyState == 4 && this.status == 200) {
-        var response = JSON.parse(xhr.response);
-
-        var _iterator = _createForOfIteratorHelper(response.cities),
-            _step;
-
-        try {
-          for (_iterator.s(); !(_step = _iterator.n()).done;) {
-            city = _step.value;
-            console.log(city.name);
-            var tbody = document.getElementById("cities");
-            var row = document.createElement("tr");
-            var rowNumber = document.createElement("td");
-            rowNumber.innerHTML = city.id;
-            row.appendChild(rowNumber);
-            var countryName = document.createElement("td");
-            countryName.innerHTML = city.country.name;
-            row.appendChild(countryName);
-            var stateName = document.createElement("td");
-            stateName.innerHTML = city.state.name;
-            row.appendChild(stateName);
-            var cityName = document.createElement("td");
-            cityName.innerHTML = city.name;
-            row.appendChild(cityName);
-            var cityActions = document.createElement("td");
-            cityActions.innerHTML = "<button type=\"button\" id=\"" + city.id + "\" class=\"btn btn-info btn-sm country-show-btn\">Show</button><button type=\"button\" id=\"" + city.id + "\" class=\"btn btn-primary btn-sm ml-2 mr-2 country-edit-btn\">Edit</button><button type=\"button\" id=\"" + city.id + "\" class=\"btn btn-danger btn-sm country-delete-btn\">Delete</button>";
-            row.appendChild(cityActions);
-            tbody.appendChild(row);
-          }
-        } catch (err) {
-          _iterator.e(err);
-        } finally {
-          _iterator.f();
+        if (response.status == 200) {
+          i = 0;
+          $.each(response.cities, function (key, item) {
+            i = i + 1;
+            $("#cities").append("<tr>            <td>" + i + "</td>            <td>" + item.country.name + "</td>            <td>" + item.state.name + "</td>            <td>" + item.name + "</td>            <td><button type=\"button\" id=\"" + item.id + "\" class=\"btn btn-info btn-sm city-show-btn\">Show</button>            <button type=\"button\" id=\"" + item.id + "\" class=\"btn btn-primary btn-sm city-edit-btn\">Edit</button>            <button type=\"button\" id=\"" + item.id + "\" class=\"btn btn-danger btn-sm city-delete-btn\">Delete</button></td>          </tr>");
+          });
+        } else {
+          $('.message_error').html("");
+          $('.message_error').append(response.message);
         }
       }
-    };
+    });
+  } // show city
 
-    xhr.send();
-  }
-};
+
+  $(document).on("click", ".city-show-btn", function (e) {
+    e.preventDefault();
+    var id = $(this).attr("id");
+    $("#showCityModal").modal("show");
+    $.ajax({
+      type: "GET",
+      url: "/admin/cities/" + id,
+      dataType: "json",
+      success: function success(response) {
+        if (response.status == 200) {
+          $(".show-city-name").append(response.city.name);
+          $(".show-city-state_id").append(response.city.state.name);
+          $(".show-city-country_id").append(response.city.country.name);
+          $("#city").val(response.city.id);
+        } else {
+          $(".message_error").append(response.message);
+        }
+      }
+    });
+  });
+  $(document).on("click", ".close-show-city", function () {
+    $("#showCityModal").modal("hide");
+    $(".show-city-name").html("");
+    $(".show-city-country_id").html("");
+  });
+  $(document).on("click", "body", function () {
+    $("#showCityModal").modal("hide");
+    $(".show-city-name").html("");
+    $(".show-city-country_id").html("");
+  });
+});
 /******/ })()
 ;

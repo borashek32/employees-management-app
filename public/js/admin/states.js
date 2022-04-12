@@ -146,8 +146,11 @@ $(document).ready(function () {
           $("#edit_state_name").val(response.state.name);
           $("#state_id").val(response.state.id); // fetchCountries()
 
+          $(".edit-country-select").append('<option selected value="' + response.state.country.id + '">' + response.state.country.name + '</option>');
           $.each(response.countries, function (key, item) {
-            $(".edit-country-select").append('<option value="' + item.id + '">' + item.name + '</option>');
+            if (response.state.country.id !== item.id) {
+              $(".edit-country-select").append('<option value="' + item.id + '">' + item.name + '</option>');
+            }
           });
         } else {
           $(".message_error").append(response.message);

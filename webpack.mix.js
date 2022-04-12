@@ -13,13 +13,13 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js')
 
-    .js('resources/js/admin/users.js', 'public/js/admin')
-    .js('resources/js/admin/countries.js', 'public/js/admin')
-    .js('resources/js/admin/states.js', 'public/js/admin')
-    .js('resources/js/admin/cities.js', 'public/js/admin')
-    .js('resources/js/admin/roles.js', 'public/js/admin')
+  .js('resources/js/admin/users.js', 'public/js/admin')
+  .js('resources/js/admin/countries.js', 'public/js/admin')
+  .js('resources/js/admin/states.js', 'public/js/admin')
+  .js('resources/js/admin/roles.js', 'public/js/admin')
+  .js('resources/js/admin/cities.js', 'public/js/admin')
 
-    .vue()
+  .vue()
 
-    .sass('resources/sass/app.scss', 'public/css')
-    .sass('resources/sass/style.sass', 'public/css');
+  .sass('resources/sass/app.scss', 'public/css')
+  .sass('resources/sass/style.sass', 'public/css');

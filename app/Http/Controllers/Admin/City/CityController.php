@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\City;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Country;
 use App\Models\State;
 use App\Models\City;
 
@@ -28,6 +29,23 @@ class CityController extends Controller
       return response()->json([
           'status'   => 400,
           'message'  => "Something went wrong while loading data"
+      ]);
+    }
+  }
+
+  public function show($id)
+  {
+    $city = City::find($id)->load(['state', 'country']);
+
+    if($city) {
+      return response()->json([
+        'status'   => 200,
+        'city'     => $city
+      ]);
+    } else {
+      return response()->json([
+        'status'   => 404,
+        'message'  => 'City not Found'
       ]);
     }
   }

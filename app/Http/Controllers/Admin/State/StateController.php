@@ -106,7 +106,7 @@ class StateController extends Controller
 
   public function edit($id)
   {
-    $state       = State::where('id', $id)->first();
+    $state       = State::find($id)->load(['country']);
     $countries   = Country::all();
 
     if($state) {
