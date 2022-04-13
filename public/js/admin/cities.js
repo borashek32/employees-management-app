@@ -316,20 +316,18 @@ $(document).ready(function () {
       },
       dataType: "json",
       success: function success(response) {
-        console.log(response.cities);
-        console.log(response.status);
-        $("#cities").html(""); // if(response.cities == 200) {
+        $("#cities").html("");
 
-        i = 0;
-        $.each(response.cities, function (key, item) {
-          console.log(response.cities);
-          console.log(response.status);
-          i = i + 1;
-          $("#cities").append("<tr>            <td>" + i + "</td>            <td>" + item.country.name + "</td>            <td>" + item.state.name + "</td>            <td>" + item.name + "</td>            <td><button type=\"button\" id=\"" + item.id + "\" class=\"btn btn-info btn-sm city-show-btn\">Show</button>            <button type=\"button\" id=\"" + item.id + "\" class=\"btn btn-primary btn-sm city-edit-btn\">Edit</button>            <button type=\"button\" id=\"" + item.id + "\" class=\"btn btn-danger btn-sm city-delete-btn\">Delete</button></td>          </tr>");
-        }); // } else {
-        //   $('.message_error').html("");
-        //   $('.message_error').append(response.message);
-        // }
+        if (response.status == 200) {
+          i = 0;
+          $.each(response.cities, function (key, item) {
+            i = i + 1;
+            $("#cities").append("<tr>            <td>" + i + "</td>            <td>" + item.country.name + "</td>            <td>" + item.state.name + "</td>            <td>" + item.name + "</td>            <td><button type=\"button\" id=\"" + item.id + "\" class=\"btn btn-info btn-sm city-show-btn\">Show</button>            <button type=\"button\" id=\"" + item.id + "\" class=\"btn btn-primary btn-sm city-edit-btn\">Edit</button>            <button type=\"button\" id=\"" + item.id + "\" class=\"btn btn-danger btn-sm city-delete-btn\">Delete</button></td>          </tr>");
+          });
+        } else {
+          $('.message_error').html("");
+          $('.message_error').append(response.message);
+        }
       }
     });
   });

@@ -375,14 +375,10 @@ console.log(query)
       },
       dataType: "json",
       success: function (response) {
-        console.log(response.cities)
-        console.log(response.status)
         $("#cities").html("")
-        // if(response.cities == 200) {
+        if(response.status == 200) {
           i = 0
           $.each(response.cities, function (key, item) {
-            console.log(response.cities)
-            console.log(response.status)
             i = i+1
             $("#cities").append(`<tr>\
             <td>`+i+`</td>\
@@ -394,10 +390,10 @@ console.log(query)
             <button type="button" id="`+item.id+`" class="btn btn-danger btn-sm city-delete-btn">Delete</button></td>\
           </tr>`);
           });
-        // } else {
-        //   $('.message_error').html("");
-        //   $('.message_error').append(response.message);
-        // }
+        } else {
+          $('.message_error').html("");
+          $('.message_error').append(response.message);
+        }
       }
     })
   })
