@@ -16,15 +16,14 @@
         <div class="form-group">
           <label for="formGroupExampleInput">Name</label>
 
-          <input type="text" class="form-control" id="edit_state_name"
-            placeholder="Enter name">
+          <input type="text" class="form-control" id="edit_state_name">
 
           <span class="text-danger edit_state_name"></span>
         </div>
 
         <div class="form-group">
           <select class="custom-select edit-country-select">
-            <option value="" selected>Choose country</option>
+
           </select>
 
           <span class="text-danger edit_country_id"></span>

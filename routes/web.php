@@ -54,6 +54,12 @@ Route::prefix('admin')->name('admin.')->group(function() {
       ->name('cities.index');
   Route::get('/cities-fetch', [App\Http\Controllers\Admin\City\CityController::class, 'fetch']);
   Route::get('/cities/{id}', [App\Http\Controllers\Admin\City\CityController::class, 'show']);
+  Route::delete('/cities/delete/{id}', [App\Http\Controllers\Admin\City\CityController::class, 'delete']);
+  Route::get('/cities-create', [App\Http\Controllers\Admin\City\CityController::class, 'create']);
+  Route::post('/cities', [App\Http\Controllers\Admin\City\CityController::class, 'store']);
+  Route::get('/cities/edit/{id}', [App\Http\Controllers\Admin\City\CityController::class, 'edit']);
+  Route::put('/cities/update/{id}', [App\Http\Controllers\Admin\City\CityController::class, 'update']);
+  Route::post('/cities/search', [App\Http\Controllers\Admin\City\CitySearchController::class, 'search']);
 
   Route::get('/roles', [App\Http\Controllers\Admin\Role\RoleController::class, 'index'])
       ->name('roles.index');

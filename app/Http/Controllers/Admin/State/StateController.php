@@ -64,15 +64,15 @@ class StateController extends Controller
       ]);
 
     } else {
-      $country = State::create([
+      $state = State::create([
         'name'       => $request->input('name'),
         'country_id' => $request->input('country_id')
       ]);
 
-      if($country) {
+      if($state) {
         return response()->json([
           'status'  => 200,
-          'message' => 'Country Saved Succesfully'
+          'message' => 'State Saved Succesfully'
         ]);
 
       } else {

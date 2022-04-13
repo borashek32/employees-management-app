@@ -241,6 +241,7 @@ $(document).ready(function () {
       }
     })
   })
+
 // search countries
   $(document).on("keyup", "#searchCountries", function (e) {
     e.preventDefault()

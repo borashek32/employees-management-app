@@ -1,24 +1,24 @@
 <?php
 
-namespace App\Http\Controllers\Admin\State;
+namespace App\Http\Controllers\Admin\City;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\State;
+use App\Models\City;
 
-class StateSearchController extends Controller
+class CitySearchController extends Controller
 {
   public function search(Request $request)
   {
     if($request->ajax()) {
-      $states = State::where('name', 'like', "%{$request->search}%")
+      $cities = City::where('name', 'like', "%{$request->search}%")
                 ->get()
-                ->load('country');
+                ->load(['state', 'country']);
 
-      if($states) {
+      if($cities) {
         return response()->json([
           'status'    => 200,
-          'states'    => $states
+          'cities'    => $cities
         ]);
 
       } else {

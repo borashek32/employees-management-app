@@ -9,11 +9,14 @@
       </div>
       <div class="modal-body">
         <div class="w-75">
-          <div class="">
-            <p>Name:</p>
-            <p class="show-country-name"></p>
-            <p>Code:</p>
-            <p class="show-country-code"></p>
+          <div class="row">
+            <p class="ml-2 h7 font-weight-bold">Name:</p>
+            <p class="ml-2 show-country-name"></p>
+          </div>
+
+          <div class="row">
+            <p class="ml-2 h7 font-weight-bold">Code:</p>
+            <p class="ml-2 show-country-code"></p>
           </div>
         </div>
       </div>

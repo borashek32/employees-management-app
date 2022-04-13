@@ -2,7 +2,7 @@
 
 @section('content')
   @include('admin.cities.show')
-  {{-- @include('admin.cities.edit') --}}
+  @include('admin.cities.edit')
 
   <div class="d-sm-flex align-items-center justify-content-between mb-2 mt-2">
     <p class="h5 mb-0 text-gray-800">Cities List</p>
@@ -14,7 +14,7 @@
 
   <div class="card">
     <div class="card-header d-flex flex-row-reverse justify-content-between bd-highlight">
-      {{-- @include('admin.states.search') --}}
+      @include('admin.cities.search')
 
       @include('admin.cities.create')
     </div>

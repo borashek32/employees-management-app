@@ -9,15 +9,19 @@
       </div>
       <div class="modal-body">
         <div class="w-75">
-          <div class="">
-            <p>Name:</p>
-            <p class="show-city-name"></p>
+          <div class="row">
+            <p class="ml-2 h7 font-weight-bold">Name:</p>
+            <p class="ml-4 show-city-name"></p>
+          </div>
 
-            <p>State:</p>
-            <p class="show-city-state_id"></p>
+          <div class="row">
+            <p class="ml-2 h7 font-weight-bold">State:</p>
+            <p class="ml-4 show-city-state_id"></p>
+          </div>
 
-            <p>Country:</p>
-            <p class="show-city-country_id"></p>
+          <div class="row">
+            <p class="ml-2 h7 font-weight-bold">Country:</p>
+            <p class="ml-4 show-city-country_id"></p>
           </div>
         </div>
       </div>

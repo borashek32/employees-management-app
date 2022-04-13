@@ -36,7 +36,7 @@ $(document).ready(function () {
   function fetchCountries() {
     $.ajax({
       type: "GET",
-      url: "/admin/states-create",
+      url: "/admin/cities-create",
       dataType: "json",
       success: function (response) {
         if(response.status == 200) {
@@ -149,7 +149,7 @@ $(document).ready(function () {
     $(".show-state-country_id").html("")
   });
 
-  // edit state
+// edit state
   $(document).on("click", ".state-edit-btn", function (e) {
     e.preventDefault()
 
@@ -164,7 +164,7 @@ $(document).ready(function () {
         if(response.status == 200) {
           $("#edit_state_name").val(response.state.name)
           $("#state_id").val(response.state.id)
-// fetchCountries()
+
           $(".edit-country-select").append('<option selected value="'+response.state.country.id+'">'+response.state.country.name+'</option>')
           $.each(response.countries, function (key, item) {
             if(response.state.country.id !== item.id) {
